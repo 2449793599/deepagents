@@ -215,22 +215,22 @@ Derived from `_REQUIRED_MIDDLEWARE` and used for quick membership testing.
 
 # 入口
 def create_deep_agent(  # noqa: C901, PLR0912, PLR0915  # Complex graph assembly logic with many conditional branches
-    model: str | BaseChatModel | None = None,
-    tools: Sequence[BaseTool | Callable | dict[str, Any]] | None = None,
+    model: str | BaseChatModel | None = None, # LLM模型
+    tools: Sequence[BaseTool | Callable | dict[str, Any]] | None = None, # 自定义工具
     *,
-    system_prompt: str | SystemMessage | None = None,
-    middleware: Sequence[AgentMiddleware] = (),
-    subagents: Sequence[SubAgent | CompiledSubAgent | AsyncSubAgent] | None = None,
-    skills: list[str] | None = None,
-    memory: list[str] | None = None,
-    permissions: list[FilesystemPermission] | None = None,
-    backend: BackendProtocol | BackendFactory | None = None,
-    interrupt_on: dict[str, bool | InterruptOnConfig] | None = None,
-    response_format: ResponseFormat[ResponseT] | type[ResponseT] | dict[str, Any] | None = None,
-    state_schema: type[DeepAgentState] | None = None,
-    context_schema: type[ContextT] | None = None,
-    checkpointer: Checkpointer | None = None,
-    store: BaseStore | None = None,
+    system_prompt: str | SystemMessage | None = None, # 自定义系统提示
+    middleware: Sequence[AgentMiddleware] = (), # 中间件扩展
+    subagents: Sequence[SubAgent | CompiledSubAgent | AsyncSubAgent] | None = None, # 子代理
+    skills: list[str] | None = None, # 技能源路径
+    memory: list[str] | None = None, # 记忆文件路径
+    permissions: list[FilesystemPermission] | None = None, # 文件系统权限
+    backend: BackendProtocol | BackendFactory | None = None, # 存储后端
+    interrupt_on: dict[str, bool | InterruptOnConfig] | None = None, # 人机协同
+    response_format: ResponseFormat[ResponseT] | type[ResponseT] | dict[str, Any] | None = None, # 结构化输出
+    state_schema: type[DeepAgentState] | None = None, # 状态定义
+    context_schema: type[ContextT] | None = None, # 上下文定义
+    checkpointer: Checkpointer | None = None, # 状态持久化
+    store: BaseStore | None = None,  # 长期存储
     debug: bool = False,
     name: str | None = None,
     cache: BaseCache | None = None,
