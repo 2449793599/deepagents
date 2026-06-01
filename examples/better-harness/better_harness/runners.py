@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-from better_harness.core import (
+from core import (
     CaseOutcome,
     EvalCase,
     Experiment,
@@ -20,7 +20,7 @@ from better_harness.core import (
     extract_trace_refs,
     write_trace_refs,
 )
-from better_harness.patching import (
+from patching import (
     VARIANT_ENV,
     ensure_sitecustomize,
     prepend_pythonpath,

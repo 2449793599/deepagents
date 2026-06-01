@@ -15,8 +15,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from better_harness.core import Experiment, Proposal, RunLayout, SplitResult, Variant
-from better_harness.patching import build_variant, prepend_pythonpath
+from core import Experiment, Proposal, RunLayout, SplitResult, Variant
+from patching import build_variant, prepend_pythonpath
 
 DEFAULT_SYSTEM_PROMPT = """You are Better Agent, an outer-loop Deep Agent that improves another agent harness.
 

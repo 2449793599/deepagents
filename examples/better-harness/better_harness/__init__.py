@@ -1,6 +1,6 @@
 """Public exports for better-harness."""
 
-from better_harness.core import (
+from core import (
     CaseOutcome,
     EvalCase,
     Experiment,
@@ -14,14 +14,14 @@ from better_harness.core import (
     run_experiment,
     validate_experiment,
 )
-from better_harness.patching import (
+from patching import (
     build_baseline_variant,
     build_variant,
     patch_from_env,
     patch_module_attrs,
     workspace_override_context,
 )
-from better_harness.runners import parse_harbor_case, parse_pytest_outcomes
+from runners import parse_harbor_case, parse_pytest_outcomes
 
 __all__ = [
     "CaseOutcome",

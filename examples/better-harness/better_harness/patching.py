@@ -8,7 +8,7 @@ import os
 from collections.abc import Iterator
 from pathlib import Path
 
-from better_harness.core import Experiment, Variant
+from core import Experiment, Variant
 
 VARIANT_ENV = "BETTER_HARNESS_VARIANT_FILE"
 

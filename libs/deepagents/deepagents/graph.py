@@ -25,33 +25,33 @@ from langgraph.store.base import BaseStore
 from langgraph.types import Checkpointer
 from langgraph.typing import ContextT
 
-from deepagents._api.deprecation import deprecated, warn_deprecated
-from deepagents._excluded_middleware import (
+from libs.deepagents.deepagents._api.deprecation import deprecated, warn_deprecated
+from libs.deepagents.deepagents._excluded_middleware import (
     _apply_excluded_middleware,
     _validate_excluded_middleware_config,
     _verify_excluded_middleware_coverage,
 )
-from deepagents._messages_reducer import _messages_delta_reducer
-from deepagents._models import resolve_model
-from deepagents._subagent_transformer import SubagentTransformer
-from deepagents._tools import _apply_tool_description_overrides
-from deepagents._version import __version__
-from deepagents.backends import StateBackend
-from deepagents.backends.protocol import BackendFactory, BackendProtocol
-from deepagents.middleware._tool_exclusion import _ToolExclusionMiddleware
-from deepagents.middleware.async_subagents import AsyncSubAgent, AsyncSubAgentMiddleware
-from deepagents.middleware.filesystem import FilesystemMiddleware, FilesystemPermission
-from deepagents.middleware.memory import MemoryMiddleware
-from deepagents.middleware.patch_tool_calls import PatchToolCallsMiddleware
-from deepagents.middleware.skills import SkillsMiddleware
-from deepagents.middleware.subagents import (
+from libs.deepagents.deepagents._messages_reducer import _messages_delta_reducer
+from libs.deepagents.deepagents._models import resolve_model
+from libs.deepagents.deepagents._subagent_transformer import SubagentTransformer
+from libs.deepagents.deepagents._tools import _apply_tool_description_overrides
+from libs.deepagents.deepagents._version import __version__
+from libs.deepagents.deepagents.backends import StateBackend
+from libs.deepagents.deepagents.backends.protocol import BackendFactory, BackendProtocol
+from libs.deepagents.deepagents.middleware._tool_exclusion import _ToolExclusionMiddleware
+from libs.deepagents.deepagents.middleware.async_subagents import AsyncSubAgent, AsyncSubAgentMiddleware
+from libs.deepagents.deepagents.middleware.filesystem import FilesystemMiddleware, FilesystemPermission
+from libs.deepagents.deepagents.middleware.memory import MemoryMiddleware
+from libs.deepagents.deepagents.middleware.patch_tool_calls import PatchToolCallsMiddleware
+from libs.deepagents.deepagents.middleware.skills import SkillsMiddleware
+from libs.deepagents.deepagents.middleware.subagents import (
     GENERAL_PURPOSE_SUBAGENT,
     CompiledSubAgent,
     SubAgent,
     SubAgentMiddleware,
 )
-from deepagents.middleware.summarization import create_summarization_middleware
-from deepagents.profiles.harness.harness_profiles import (
+from libs.deepagents.deepagents.middleware.summarization import create_summarization_middleware
+from libs.deepagents.deepagents.profiles.harness.harness_profiles import (
     GeneralPurposeSubagentProfile,
     _apply_profile_prompt,
     _harness_profile_for_model,
