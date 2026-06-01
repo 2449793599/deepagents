@@ -20,7 +20,7 @@ Examples:
 from collections import defaultdict
 from typing import cast
 
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents.backends.protocol import (
     BackendProtocol,
     EditResult,
     ExecuteResponse,
@@ -36,7 +36,7 @@ from deepagents.backends.protocol import (
     WriteResult,
     execute_accepts_timeout,
 )
-from deepagents.backends.state import StateBackend
+from libs.deepagents.deepagents.backends.state import StateBackend
 
 
 def _remap_grep_path(m: GrepMatch, route_prefix: str) -> GrepMatch:

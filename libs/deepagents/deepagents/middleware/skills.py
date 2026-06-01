@@ -115,7 +115,7 @@ if TYPE_CHECKING:
     from langchain_core.runnables import RunnableConfig
     from langgraph.runtime import Runtime
 
-    from deepagents.backends.protocol import BACKEND_TYPES, BackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import BACKEND_TYPES, BackendProtocol
 
 from typing import NotRequired, TypedDict
 
@@ -129,9 +129,9 @@ from langchain.agents.middleware.types import (
 )
 from langgraph.prebuilt import ToolRuntime
 
-from deepagents.backends.protocol import FILE_NOT_FOUND, FileDownloadResponse, LsResult
-from deepagents.backends.utils import to_posix_path
-from deepagents.middleware._utils import append_to_system_message
+from libs.deepagents.deepagents.backends.protocol import FILE_NOT_FOUND, FileDownloadResponse, LsResult
+from libs.deepagents.deepagents.backends.utils import to_posix_path
+from libs.deepagents.deepagents.middleware._utils import append_to_system_message
 
 logger = logging.getLogger(__name__)
 

@@ -20,7 +20,7 @@ from typing import Any
 
 from packaging.version import InvalidVersion, Version
 
-from deepagents.profiles.provider.provider_profiles import ProviderProfile, _register_provider_profile_impl
+from libs.deepagents.deepagents.profiles.provider.provider_profiles import ProviderProfile, _register_provider_profile_impl
 
 logger = logging.getLogger(__name__)
 

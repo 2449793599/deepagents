@@ -21,10 +21,10 @@ logger = logging.getLogger(__name__)
 
 
 def _validate_excluded_middleware_config(
-    profile: HarnessProfile,
-    *,
-    required_classes: frozenset[type[AgentMiddleware[Any, Any, Any]]],
-    required_names: frozenset[str],
+        profile: HarnessProfile,
+        *,
+        required_classes: frozenset[type[AgentMiddleware[Any, Any, Any]]],
+        required_names: frozenset[str],
 ) -> None:
     """Validate stack-independent guards on `profile.excluded_middleware`.
 
@@ -65,7 +65,7 @@ def _validate_excluded_middleware_config(
 
 
 def _raise_on_name_collisions(
-    name_matched_types: dict[str, set[type[AgentMiddleware[Any, Any, Any]]]],
+        name_matched_types: dict[str, set[type[AgentMiddleware[Any, Any, Any]]]],
 ) -> None:
     """Raise `ValueError` if any string exclusion matched multiple distinct classes.
 
@@ -77,7 +77,8 @@ def _raise_on_name_collisions(
     collisions = {name: classes for name, classes in name_matched_types.items() if len(classes) > 1}
     if not collisions:
         return
-    labels = sorted(f"{name!r} matched {sorted(cls.__name__ for cls in classes)}" for name, classes in collisions.items())
+    labels = sorted(
+        f"{name!r} matched {sorted(cls.__name__ for cls in classes)}" for name, classes in collisions.items())
     msg = (
         "HarnessProfile.excluded_middleware name entry matched multiple "
         "distinct middleware classes within a single stack: "
@@ -88,11 +89,11 @@ def _raise_on_name_collisions(
 
 
 def _apply_excluded_middleware(
-    stack: list[AgentMiddleware[Any, Any, Any]],
-    profile: HarnessProfile,
-    *,
-    matched_classes: set[type[AgentMiddleware[Any, Any, Any]]] | None = None,
-    matched_names: set[str] | None = None,
+        stack: list[AgentMiddleware[Any, Any, Any]],
+        profile: HarnessProfile,
+        *,
+        matched_classes: set[type[AgentMiddleware[Any, Any, Any]]] | None = None,
+        matched_names: set[str] | None = None,
 ) -> list[AgentMiddleware[Any, Any, Any]]:
     """Drop middleware in the stack matched by `profile.excluded_middleware`.
 
@@ -166,12 +167,12 @@ def _apply_excluded_middleware(
 
 
 def _verify_excluded_middleware_coverage(
-    profile: HarnessProfile,
-    matched_classes: set[type[AgentMiddleware[Any, Any, Any]]],
-    matched_names: set[str],
-    *,
-    required_classes: frozenset[type[AgentMiddleware[Any, Any, Any]]],
-    required_names: frozenset[str],
+        profile: HarnessProfile,
+        matched_classes: set[type[AgentMiddleware[Any, Any, Any]]],
+        matched_names: set[str],
+        *,
+        required_classes: frozenset[type[AgentMiddleware[Any, Any, Any]]],
+        required_names: frozenset[str],
 ) -> None:
     """Raise `ValueError` if any `profile.excluded_middleware` entry matched nothing.
 

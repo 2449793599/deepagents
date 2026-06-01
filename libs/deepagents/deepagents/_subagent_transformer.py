@@ -46,13 +46,13 @@ class SubagentRunStream(SubgraphRunStream):
     """Typed sync handle for a declared subagent execution."""
 
     def __init__(
-        self,
-        mux: StreamMux,
-        *,
-        path: tuple[str, ...],
-        graph_name: str | None = None,
-        trigger_call_id: str | None = None,
-        task_input: str | None = None,
+            self,
+            mux: StreamMux,
+            *,
+            path: tuple[str, ...],
+            graph_name: str | None = None,
+            trigger_call_id: str | None = None,
+            task_input: str | None = None,
     ) -> None:
         super().__init__(
             mux,
@@ -77,13 +77,13 @@ class AsyncSubagentRunStream(AsyncSubgraphRunStream):
     """Typed async handle for a declared subagent execution."""
 
     def __init__(
-        self,
-        mux: StreamMux,
-        *,
-        path: tuple[str, ...],
-        graph_name: str | None = None,
-        trigger_call_id: str | None = None,
-        task_input: str | None = None,
+            self,
+            mux: StreamMux,
+            *,
+            path: tuple[str, ...],
+            graph_name: str | None = None,
+            trigger_call_id: str | None = None,
+            task_input: str | None = None,
     ) -> None:
         super().__init__(
             mux,
@@ -110,10 +110,10 @@ class SubagentTransformer(_TasksLifecycleBase):
     _native: ClassVar[bool] = True
 
     def __init__(
-        self,
-        scope: tuple[str, ...] = (),
-        *,
-        subagent_names: frozenset[str] = frozenset(),
+            self,
+            scope: tuple[str, ...] = (),
+            *,
+            subagent_names: frozenset[str] = frozenset(),
     ) -> None:
         super().__init__(scope)
         self._names = subagent_names
@@ -172,10 +172,10 @@ class SubagentTransformer(_TasksLifecycleBase):
             return
 
     def _on_started(
-        self,
-        ns: tuple[str, ...],
-        graph_name: str | None,  # noqa: ARG002
-        trigger_call_id: str | None,
+            self,
+            ns: tuple[str, ...],
+            graph_name: str | None,  # noqa: ARG002
+            trigger_call_id: str | None,
     ) -> None:
         if trigger_call_id is None:
             return
@@ -203,10 +203,10 @@ class SubagentTransformer(_TasksLifecycleBase):
         self._log.push(handle)
 
     def _on_terminal(
-        self,
-        ns: tuple[str, ...],
-        status: SubgraphStatus,
-        error: str | None,
+            self,
+            ns: tuple[str, ...],
+            status: SubgraphStatus,
+            error: str | None,
     ) -> None:
         handle = self._handles.get(ns)
         if handle is None or handle._seen_terminal:

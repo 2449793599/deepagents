@@ -47,10 +47,10 @@ Use a **plain tool** when:
 * The tool is specific to a single consumer (e.g. CLI-only)
 """
 
-from deepagents.middleware.async_subagents import AsyncSubAgent, AsyncSubAgentMiddleware
-from deepagents.middleware.filesystem import FilesystemMiddleware, FilesystemPermission
-from deepagents.middleware.memory import MemoryMiddleware
-from deepagents.middleware.rubric import (
+from libs.deepagents.deepagents.middleware.async_subagents import AsyncSubAgent, AsyncSubAgentMiddleware
+from libs.deepagents.deepagents.middleware.filesystem import FilesystemMiddleware, FilesystemPermission
+from libs.deepagents.deepagents.middleware.memory import MemoryMiddleware
+from libs.deepagents.deepagents.middleware.rubric import (
     GRADER_SYSTEM_PROMPT,
     RUBRIC_GRADER_MESSAGE_SOURCE,
     CriterionEval,
@@ -63,9 +63,9 @@ from deepagents.middleware.rubric import (
     RubricResult,
     RubricState,
 )
-from deepagents.middleware.skills import SkillsMiddleware
-from deepagents.middleware.subagents import CompiledSubAgent, SubAgent, SubAgentMiddleware
-from deepagents.middleware.summarization import (
+from libs.deepagents.deepagents.middleware.skills import SkillsMiddleware
+from libs.deepagents.deepagents.middleware.subagents import CompiledSubAgent, SubAgent, SubAgentMiddleware
+from libs.deepagents.deepagents.middleware.summarization import (
     SummarizationMiddleware,
     SummarizationToolMiddleware,
     create_summarization_tool_middleware,

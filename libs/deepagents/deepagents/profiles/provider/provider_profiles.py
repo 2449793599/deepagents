@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import TYPE_CHECKING, Any
 
-from deepagents.profiles._keys import validate_profile_key
+from libs.deepagents.deepagents.profiles._keys import validate_profile_key
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Mapping

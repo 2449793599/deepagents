@@ -26,15 +26,15 @@ import threading
 import warnings
 from importlib.metadata import EntryPoint, entry_points
 
-from deepagents.profiles.harness import (
+from libs.deepagents.deepagents.profiles.harness import (
     _anthropic_haiku_4_5,
     _anthropic_opus_4_7,
     _anthropic_sonnet_4_6,
     _openai_codex,
 )
-from deepagents.profiles.harness.harness_profiles import _HARNESS_PROFILES
-from deepagents.profiles.provider import _openai, _openrouter
-from deepagents.profiles.provider.provider_profiles import _PROVIDER_PROFILES
+from libs.deepagents.deepagents.profiles.harness.harness_profiles import _HARNESS_PROFILES
+from libs.deepagents.deepagents.profiles.provider import _openai, _openrouter
+from libs.deepagents.deepagents.profiles.provider.provider_profiles import _PROVIDER_PROFILES
 
 logger = logging.getLogger(__name__)
 

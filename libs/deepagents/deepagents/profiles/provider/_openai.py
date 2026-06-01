@@ -10,7 +10,7 @@ first profile-registry access. Not exposed as an
 should not depend on install-time metadata to activate.
 """
 
-from deepagents.profiles.provider.provider_profiles import (
+from libs.deepagents.deepagents.profiles.provider.provider_profiles import (
     ProviderProfile,
     _register_provider_profile_impl,
 )

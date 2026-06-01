@@ -74,10 +74,10 @@ from langgraph.types import Command
 from pydantic import BaseModel
 from typing_extensions import TypedDict
 
-from deepagents._api.deprecation import warn_deprecated
-from deepagents.backends import CompositeBackend
-from deepagents.middleware._overflow_clip import _aclip_overflow_tail, _clip_overflow_tail
-from deepagents.middleware._utils import append_to_system_message
+from libs.deepagents.deepagents._api.deprecation import warn_deprecated
+from libs.deepagents.deepagents.backends import CompositeBackend
+from libs.deepagents.deepagents.middleware._overflow_clip import _aclip_overflow_tail, _clip_overflow_tail
+from libs.deepagents.deepagents.middleware._utils import append_to_system_message
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
@@ -88,7 +88,7 @@ if TYPE_CHECKING:
     from langchain_core.tools import BaseTool
     from langgraph.runtime import Runtime
 
-    from deepagents.backends.protocol import BACKEND_TYPES, BackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import BACKEND_TYPES, BackendProtocol
 
 logger = logging.getLogger(__name__)
 
@@ -1302,7 +1302,7 @@ def create_summarization_tool_middleware(
         )
         ```
     """
-    from deepagents._models import resolve_model  # noqa: PLC0415
+    from libs.deepagents.deepagents._models import resolve_model  # noqa: PLC0415
 
     if isinstance(model, str):
         model = resolve_model(model)

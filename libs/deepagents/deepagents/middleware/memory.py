@@ -64,7 +64,7 @@ if TYPE_CHECKING:
     from langchain_core.runnables import RunnableConfig
     from langgraph.runtime import Runtime
 
-    from deepagents.backends.protocol import BACKEND_TYPES, BackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import BACKEND_TYPES, BackendProtocol
 
 from langchain.agents.middleware.types import (
     AgentMiddleware,
@@ -79,7 +79,7 @@ from langchain.tools import ToolRuntime
 from langchain_anthropic import ChatAnthropic
 from langchain_core.messages import ContentBlock, SystemMessage
 
-from deepagents.middleware._utils import append_to_system_message
+from libs.deepagents.deepagents.middleware._utils import append_to_system_message
 
 logger = logging.getLogger(__name__)
 

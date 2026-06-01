@@ -26,7 +26,7 @@ from langgraph_sdk.client import LangGraphClient, SyncLangGraphClient
 from langgraph_sdk.schema import Run
 from pydantic import BaseModel, Field
 
-from deepagents.middleware._utils import append_to_system_message
+from libs.deepagents.deepagents.middleware._utils import append_to_system_message
 
 logger = logging.getLogger(__name__)
 

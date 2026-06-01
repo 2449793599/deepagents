@@ -1,6 +1,6 @@
 """Provider profile package: `ProviderProfile` API and built-in providers."""
 
-from deepagents.profiles.provider.provider_profiles import (
+from libs.deepagents.deepagents.profiles.provider.provider_profiles import (
     ProviderProfile,
     apply_provider_profile,
     get_provider_profile,

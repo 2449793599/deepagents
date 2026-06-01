@@ -14,8 +14,8 @@ from pathlib import Path
 
 import wcmatch.glob as wcglob
 
-from deepagents._api.deprecation import warn_deprecated
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents._api.deprecation import warn_deprecated
+from libs.deepagents.deepagents.backends.protocol import (
     FILE_NOT_FOUND,
     INVALID_PATH,
     IS_DIRECTORY,
@@ -34,7 +34,7 @@ from deepagents.backends.protocol import (
     ReadResult,
     WriteResult,
 )
-from deepagents.backends.utils import (
+from libs.deepagents.deepagents.backends.utils import (
     _get_file_type,
     check_empty_content,
     perform_string_replacement,

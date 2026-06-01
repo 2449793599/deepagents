@@ -516,7 +516,7 @@ class RubricMiddleware(AgentMiddleware[RubricState, ContextT, ResponseT]):
         # Local import keeps the import-time graph minimal -- `resolve_model`
         # / `init_chat_model` can trigger provider lookups / API key
         # validation we don't want to pay at module-import time.
-        from deepagents._models import resolve_model  # noqa: PLC0415
+        from libs.deepagents.deepagents._models import resolve_model  # noqa: PLC0415
 
         self._grader = create_agent(
             model=resolve_model(self._model),

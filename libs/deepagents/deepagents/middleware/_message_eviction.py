@@ -15,12 +15,12 @@ from typing import TYPE_CHECKING, cast
 
 from langchain_core.messages import BaseMessage, ToolMessage
 
-from deepagents.backends.utils import format_content_with_line_numbers, sanitize_tool_call_id
+from libs.deepagents.deepagents.backends.utils import format_content_with_line_numbers, sanitize_tool_call_id
 
 if TYPE_CHECKING:
     from langchain_core.messages.content import ContentBlock
 
-    from deepagents.backends.protocol import BackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import BackendProtocol
 
 TOO_LARGE_TOOL_MSG = """Tool result too large, the result of this tool call {tool_call_id} was saved in the filesystem at this path: {file_path}
 

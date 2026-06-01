@@ -12,9 +12,9 @@ import subprocess
 import uuid
 from typing import TYPE_CHECKING
 
-from deepagents._api.deprecation import warn_deprecated
-from deepagents.backends.filesystem import FilesystemBackend
-from deepagents.backends.protocol import ExecuteResponse, SandboxBackendProtocol
+from libs.deepagents.deepagents._api.deprecation import warn_deprecated
+from libs.deepagents.deepagents.backends.filesystem import FilesystemBackend
+from libs.deepagents.deepagents.backends.protocol import ExecuteResponse, SandboxBackendProtocol
 
 if TYPE_CHECKING:
     from pathlib import Path

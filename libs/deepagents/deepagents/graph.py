@@ -63,7 +63,8 @@ logger = logging.getLogger(__name__)
 class DeepAgentState(AgentState):
     """AgentState with DeltaChannel on messages to reduce checkpoint growth from O(N²) to O(N)."""
 
-    messages: Required[Annotated[list[AnyMessage], DeltaChannel(_messages_delta_reducer, snapshot_frequency=50)]]  # ty: ignore[invalid-argument-type]
+    messages: Required[Annotated[list[AnyMessage], DeltaChannel(_messages_delta_reducer,
+                                                                snapshot_frequency=50)]]  # ty: ignore[invalid-argument-type]
 
 
 BASE_AGENT_PROMPT = """You are a deep agent, an AI assistant that helps users accomplish tasks using tools. You respond with text and tool calls. The user can see your responses and tool outputs in real time.
@@ -157,11 +158,11 @@ def _build_default_model() -> ChatAnthropic:
     since="0.5.3",
     removal="1.0.0",
     message=(
-        "Relying on the default model is deprecated and will be removed in "
-        "deepagents==1.0.0 alongside support for `model=None` in "
-        "`create_deep_agent`. Construct your model explicitly "
-        "(e.g., `ChatAnthropic(model_name=...)`). See "
-        "https://docs.langchain.com/oss/python/deepagents/models"
+            "Relying on the default model is deprecated and will be removed in "
+            "deepagents==1.0.0 alongside support for `model=None` in "
+            "`create_deep_agent`. Construct your model explicitly "
+            "(e.g., `ChatAnthropic(model_name=...)`). See "
+            "https://docs.langchain.com/oss/python/deepagents/models"
     ),
     package="deepagents",
 )
@@ -201,40 +202,44 @@ Tracked here so `HarnessProfile.excluded_middleware` cannot strip them:
 a silently degraded agent.
 """
 
-_REQUIRED_MIDDLEWARE_CLASSES: frozenset[type[AgentMiddleware[Any, Any, Any]]] = frozenset(cls for cls, _ in _REQUIRED_MIDDLEWARE)
+_REQUIRED_MIDDLEWARE_CLASSES: frozenset[type[AgentMiddleware[Any, Any, Any]]] = frozenset(
+    cls for cls, _ in _REQUIRED_MIDDLEWARE)
 """Set of all class types that cannot be excluded from the middleware stack.
 
 Derived from `_REQUIRED_MIDDLEWARE` and used for quick membership testing.
 """
 
-_REQUIRED_MIDDLEWARE_NAMES: frozenset[str] = frozenset(name for cls, aliases in _REQUIRED_MIDDLEWARE for name in (cls.__name__, *aliases))
+_REQUIRED_MIDDLEWARE_NAMES: frozenset[str] = frozenset(
+    name for cls, aliases in _REQUIRED_MIDDLEWARE for name in (cls.__name__, *aliases))
 """Set of all `.name` values that cannot be excluded from the middleware stack.
 
 Derived from `_REQUIRED_MIDDLEWARE` and used for quick membership testing.
 """
 
+
 # 入口
 def create_deep_agent(  # noqa: C901, PLR0912, PLR0915  # Complex graph assembly logic with many conditional branches
-    model: str | BaseChatModel | None = None, # LLM模型
-    tools: Sequence[BaseTool | Callable | dict[str, Any]] | None = None, # 自定义工具
-    *,
-    system_prompt: str | SystemMessage | None = None, # 自定义系统提示
-    middleware: Sequence[AgentMiddleware] = (), # 中间件扩展
-    subagents: Sequence[SubAgent | CompiledSubAgent | AsyncSubAgent] | None = None, # 子代理
-    skills: list[str] | None = None, # 技能源路径
-    memory: list[str] | None = None, # 记忆文件路径
-    permissions: list[FilesystemPermission] | None = None, # 文件系统权限
-    backend: BackendProtocol | BackendFactory | None = None, # 存储后端
-    interrupt_on: dict[str, bool | InterruptOnConfig] | None = None, # 人机协同
-    response_format: ResponseFormat[ResponseT] | type[ResponseT] | dict[str, Any] | None = None, # 结构化输出
-    state_schema: type[DeepAgentState] | None = None, # 状态定义
-    context_schema: type[ContextT] | None = None, # 上下文定义
-    checkpointer: Checkpointer | None = None, # 状态持久化
-    store: BaseStore | None = None,  # 长期存储
-    debug: bool = False,
-    name: str | None = None,
-    cache: BaseCache | None = None,
-) -> CompiledStateGraph[AgentState[ResponseT], ContextT, _InputAgentState, _OutputAgentState[ResponseT]]:  # ty: ignore[invalid-type-arguments]  # ty can't verify generic TypedDicts satisfy StateLike bound
+        model: str | BaseChatModel | None = None,  # LLM模型
+        tools: Sequence[BaseTool | Callable | dict[str, Any]] | None = None,  # 自定义工具
+        *,
+        system_prompt: str | SystemMessage | None = None,  # 自定义系统提示
+        middleware: Sequence[AgentMiddleware] = (),  # 中间件扩展
+        subagents: Sequence[SubAgent | CompiledSubAgent | AsyncSubAgent] | None = None,  # 子代理
+        skills: list[str] | None = None,  # 技能源路径
+        memory: list[str] | None = None,  # 记忆文件路径
+        permissions: list[FilesystemPermission] | None = None,  # 文件系统权限
+        backend: BackendProtocol | BackendFactory | None = None,  # 存储后端
+        interrupt_on: dict[str, bool | InterruptOnConfig] | None = None,  # 人机协同
+        response_format: ResponseFormat[ResponseT] | type[ResponseT] | dict[str, Any] | None = None,  # 结构化输出
+        state_schema: type[DeepAgentState] | None = None,  # 状态定义
+        context_schema: type[ContextT] | None = None,  # 上下文定义
+        checkpointer: Checkpointer | None = None,  # 状态持久化
+        store: BaseStore | None = None,  # 长期存储
+        debug: bool = False,
+        name: str | None = None,
+        cache: BaseCache | None = None,
+) -> CompiledStateGraph[AgentState[ResponseT], ContextT, _InputAgentState, _OutputAgentState[
+    ResponseT]]:  # ty: ignore[invalid-type-arguments]  # ty can't verify generic TypedDicts satisfy StateLike bound
     r"""Create a deep agent.
 
     !!! warning "Deep agents require a LLM that supports tool calling!"
@@ -656,7 +661,8 @@ def create_deep_agent(  # noqa: C901, PLR0912, PLR0915  # Complex graph assembly
     # invoking factory-based `extra_middleware` whose output would be thrown
     # away.
     gp_profile = _profile.general_purpose_subagent or GeneralPurposeSubagentProfile()
-    if gp_profile.enabled is not False and not any(spec["name"] == GENERAL_PURPOSE_SUBAGENT["name"] for spec in inline_subagents):
+    if gp_profile.enabled is not False and not any(
+            spec["name"] == GENERAL_PURPOSE_SUBAGENT["name"] for spec in inline_subagents):
         gp_middleware: list[AgentMiddleware[Any, Any, Any]] = [
             TodoListMiddleware(),
             FilesystemMiddleware(
@@ -702,7 +708,8 @@ def create_deep_agent(  # noqa: C901, PLR0912, PLR0915  # Complex graph assembly
                 gp_prompt = gp_prompt + "\n\n" + _profile.system_prompt_suffix
             general_purpose_spec["system_prompt"] = gp_prompt
         else:
-            general_purpose_spec["system_prompt"] = _apply_profile_prompt(_profile, GENERAL_PURPOSE_SUBAGENT["system_prompt"])
+            general_purpose_spec["system_prompt"] = _apply_profile_prompt(_profile,
+                                                                          GENERAL_PURPOSE_SUBAGENT["system_prompt"])
         if interrupt_on is not None:
             general_purpose_spec["interrupt_on"] = interrupt_on
 
@@ -791,7 +798,8 @@ def create_deep_agent(  # noqa: C901, PLR0912, PLR0915  # Complex graph assembly
     if system_prompt is None:
         final_system_prompt: str | SystemMessage = base_prompt
     elif isinstance(system_prompt, SystemMessage):
-        final_system_prompt = SystemMessage(content_blocks=[*system_prompt.content_blocks, {"type": "text", "text": f"\n\n{base_prompt}"}])
+        final_system_prompt = SystemMessage(
+            content_blocks=[*system_prompt.content_blocks, {"type": "text", "text": f"\n\n{base_prompt}"}])
     else:
         final_system_prompt = system_prompt + "\n\n" + base_prompt
 

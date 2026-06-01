@@ -17,7 +17,7 @@ from typing import Any, Final, Literal, NotRequired, TypeAlias
 from langchain.tools import ToolRuntime
 from typing_extensions import TypedDict
 
-from deepagents._api.deprecation import deprecated, warn_deprecated
+from libs.deepagents.deepagents._api.deprecation import deprecated, warn_deprecated
 
 FileFormat = Literal["v1", "v2"]
 r"""File storage format version.

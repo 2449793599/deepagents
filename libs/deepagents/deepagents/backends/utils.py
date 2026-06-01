@@ -14,8 +14,8 @@ from typing import Any, Literal, overload
 
 import wcmatch.glob as wcglob
 
-from deepagents._api.deprecation import warn_deprecated
-from deepagents.backends.protocol import FileData, FileInfo as _FileInfo, GrepMatch as _GrepMatch, GrepResult, ReadResult
+from libs.deepagents.deepagents._api.deprecation import warn_deprecated
+from libs.deepagents.deepagents.backends.protocol import FileData, FileInfo as _FileInfo, GrepMatch as _GrepMatch, GrepResult, ReadResult
 
 EMPTY_CONTENT_WARNING = "System reminder: File exists but has empty contents"
 

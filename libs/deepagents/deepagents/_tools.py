@@ -27,8 +27,8 @@ def _tool_name(tool: BaseTool | Callable | dict[str, Any]) -> str | None:
 
 
 def _apply_tool_description_overrides(
-    tools: Sequence[BaseTool | Callable | dict[str, Any]] | None,
-    overrides: Mapping[str, str],
+        tools: Sequence[BaseTool | Callable | dict[str, Any]] | None,
+        overrides: Mapping[str, str],
 ) -> list[BaseTool | Callable | dict[str, Any]] | None:
     """Apply description overrides without mutating caller-owned tools.
 

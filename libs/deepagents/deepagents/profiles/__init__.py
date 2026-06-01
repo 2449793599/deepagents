@@ -14,13 +14,13 @@ Registration helpers are additive: re-registering under an existing key merges
 on top of the prior registration.
 """
 
-from deepagents.profiles.harness.harness_profiles import (
+from libs.deepagents.deepagents.profiles.harness.harness_profiles import (
     GeneralPurposeSubagentProfile,
     HarnessProfile,
     HarnessProfileConfig,
     register_harness_profile,
 )
-from deepagents.profiles.provider.provider_profiles import (
+from libs.deepagents.deepagents.profiles.provider.provider_profiles import (
     ProviderProfile,
     register_provider_profile,
 )

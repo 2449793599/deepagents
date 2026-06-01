@@ -11,8 +11,8 @@ from langgraph.runtime import get_runtime
 from langgraph.store.base import BaseStore, Item
 from langgraph.typing import ContextT, StateT
 
-from deepagents._api.deprecation import deprecated, warn_deprecated
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents._api.deprecation import deprecated, warn_deprecated
+from libs.deepagents.deepagents.backends.protocol import (
     BackendProtocol,
     EditResult,
     FileData,
@@ -26,7 +26,7 @@ from deepagents.backends.protocol import (
     ReadResult,
     WriteResult,
 )
-from deepagents.backends.utils import (
+from libs.deepagents.deepagents.backends.utils import (
     _get_file_type,
     _glob_search_files,
     _to_legacy_file_data,

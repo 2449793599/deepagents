@@ -7,8 +7,8 @@ from langchain_core.runnables import RunnableConfig
 from langgraph._internal._constants import CONFIG_KEY_READ, CONFIG_KEY_SEND
 from langgraph.config import get_config
 
-from deepagents._api.deprecation import warn_deprecated
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents._api.deprecation import warn_deprecated
+from libs.deepagents.deepagents.backends.protocol import (
     BackendProtocol,
     EditResult,
     FileData,
@@ -22,7 +22,7 @@ from deepagents.backends.protocol import (
     ReadResult,
     WriteResult,
 )
-from deepagents.backends.utils import (
+from libs.deepagents.deepagents.backends.utils import (
     _get_file_type,
     _glob_search_files,
     _to_legacy_file_data,

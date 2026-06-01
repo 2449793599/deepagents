@@ -34,9 +34,9 @@ from langgraph.runtime import Runtime
 from langgraph.types import Command, Overwrite
 from pydantic import BaseModel, Field
 
-from deepagents._api.deprecation import warn_deprecated
-from deepagents.backends import CompositeBackend, StateBackend
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents._api.deprecation import warn_deprecated
+from libs.deepagents.deepagents.backends import CompositeBackend, StateBackend
+from libs.deepagents.deepagents.backends.protocol import (
     BACKEND_TYPES as BACKEND_TYPES,  # Re-export type here for backwards compatibility
     BackendProtocol,
     EditResult,
@@ -48,7 +48,7 @@ from deepagents.backends.protocol import (
     WriteResult,
     execute_accepts_timeout,
 )
-from deepagents.backends.utils import (
+from libs.deepagents.deepagents.backends.utils import (
     _get_file_type,
     check_empty_content,
     format_content_with_line_numbers,
@@ -57,14 +57,14 @@ from deepagents.backends.utils import (
     truncate_if_too_long,
     validate_path,
 )
-from deepagents.middleware._message_eviction import (
+from libs.deepagents.deepagents.middleware._message_eviction import (
     TOO_LARGE_TOOL_MSG as TOO_LARGE_TOOL_MSG,
     _aoffload_tool_message_content,
     _create_content_preview,
     _extract_text_from_message,
     _offload_tool_message_content,
 )
-from deepagents.middleware._utils import append_to_system_message
+from libs.deepagents.deepagents.middleware._utils import append_to_system_message
 
 _FS_WCMATCH_FLAGS = wcglob.BRACE | wcglob.GLOBSTAR
 

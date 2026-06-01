@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING, Any, cast
 
 from langchain_core.messages import AIMessage, AnyMessage, ToolMessage
 
-from deepagents.middleware._message_eviction import (
+from libs.deepagents.deepagents.middleware._message_eviction import (
     _aoffload_tool_message_content,
     _extract_text_from_message,
     _offload_tool_message_content,
@@ -30,7 +30,7 @@ from deepagents.middleware._message_eviction import (
 if TYPE_CHECKING:
     from langchain.agents.middleware.summarization import ContextSize, TokenCounter
 
-    from deepagents.backends.protocol import BackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import BackendProtocol
 
 
 def _derive_overflow_clip_threshold_tokens(keep: ContextSize, max_input_tokens: int | None) -> int:

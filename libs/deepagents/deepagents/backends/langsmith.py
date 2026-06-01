@@ -6,7 +6,7 @@ import base64
 import logging
 from typing import TYPE_CHECKING
 
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents.backends.protocol import (
     ExecuteResponse,
     FileData,
     FileDownloadResponse,
@@ -14,13 +14,13 @@ from deepagents.backends.protocol import (
     ReadResult,
     WriteResult,
 )
-from deepagents.backends.sandbox import (
+from libs.deepagents.deepagents.backends.sandbox import (
     MAX_BINARY_BYTES,
     MAX_OUTPUT_BYTES,
     TRUNCATION_MSG,
     BaseSandbox,
 )
-from deepagents.backends.utils import _get_file_type
+from libs.deepagents.deepagents.backends.utils import _get_file_type
 
 if TYPE_CHECKING:
     from langsmith.sandbox import Sandbox

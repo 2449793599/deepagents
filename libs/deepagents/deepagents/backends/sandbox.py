@@ -22,7 +22,7 @@ import shlex
 from abc import ABC, abstractmethod
 from typing import Final
 
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents.backends.protocol import (
     EditResult,
     ExecuteResponse,
     FileData,
@@ -37,7 +37,7 @@ from deepagents.backends.protocol import (
     SandboxBackendProtocol,
     WriteResult,
 )
-from deepagents.backends.utils import _get_file_type
+from libs.deepagents.deepagents.backends.utils import _get_file_type
 
 logger = logging.getLogger(__name__)
 

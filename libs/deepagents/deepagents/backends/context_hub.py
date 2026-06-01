@@ -11,7 +11,7 @@ from langsmith import Client
 from langsmith.schemas import AgentEntry, FileEntry, SkillEntry
 from langsmith.utils import LangSmithError, LangSmithNotFoundError
 
-from deepagents.backends.protocol import (
+from libs.deepagents.deepagents.backends.protocol import (
     FILE_NOT_FOUND,
     INVALID_PATH,
     BackendProtocol,
@@ -27,7 +27,7 @@ from deepagents.backends.protocol import (
     ReadResult,
     WriteResult,
 )
-from deepagents.backends.utils import (
+from libs.deepagents.deepagents.backends.utils import (
     create_file_data,
     perform_string_replacement,
     slice_read_response,

@@ -7,7 +7,7 @@ under the bootstrap mutex, so a top-level call would race with concurrent
 lookups and bypass the additive-merge semantics.
 """
 
-from deepagents.profiles.harness.harness_profiles import (
+from libs.deepagents.deepagents.profiles.harness.harness_profiles import (
     GeneralPurposeSubagentProfile,
     HarnessProfile,
     HarnessProfileConfig,

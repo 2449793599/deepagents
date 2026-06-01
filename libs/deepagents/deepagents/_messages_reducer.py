@@ -29,7 +29,7 @@ from langgraph.graph.message import REMOVE_ALL_MESSAGES
 
 
 def _messages_delta_reducer(  # noqa: C901, PLR0912
-    state: list[AnyMessage] | None, writes: list[list[AnyMessage]]
+        state: list[AnyMessage] | None, writes: list[list[AnyMessage]]
 ) -> list[AnyMessage]:
     """Batch reducer for use with `DeltaChannel` on the messages key.
 
@@ -55,7 +55,8 @@ def _messages_delta_reducer(  # noqa: C901, PLR0912
     # `DeltaChannel.replay_writes` for threads whose earliest checkpoint did
     # not seed `messages: []`; treat that as the empty list so the slow path
     # doesn't pass `None` into `convert_to_messages`.
-    state_msgs = state if state and isinstance(state[0], BaseMessage) else cast("list[AnyMessage]", convert_to_messages(state or []))
+    state_msgs = state if state and isinstance(state[0], BaseMessage) else cast("list[AnyMessage]",
+                                                                                convert_to_messages(state or []))
     msgs = cast("list[AnyMessage]", convert_to_messages(flat))
 
     # REMOVE_ALL_MESSAGES resets everything; find the last sentinel and
@@ -66,7 +67,7 @@ def _messages_delta_reducer(  # noqa: C901, PLR0912
             remove_all_idx = idx
     if remove_all_idx is not None:
         state_msgs = []
-        msgs = msgs[remove_all_idx + 1 :]
+        msgs = msgs[remove_all_idx + 1:]
 
     result: list[AnyMessage | None] = []
     index: dict[str, int] = {}

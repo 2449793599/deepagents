@@ -19,9 +19,9 @@ from langgraph.types import Command
 from langsmith.run_helpers import get_tracing_context, tracing_context
 from pydantic import BaseModel, Field
 
-from deepagents.backends.protocol import BackendFactory, BackendProtocol
-from deepagents.middleware._utils import append_to_system_message
-from deepagents.middleware.filesystem import FilesystemPermission
+from libs.deepagents.deepagents.backends.protocol import BackendFactory, BackendProtocol
+from libs.deepagents.deepagents.middleware._utils import append_to_system_message
+from libs.deepagents.deepagents.middleware.filesystem import FilesystemPermission
 
 
 class SubAgent(TypedDict):
@@ -736,7 +736,7 @@ class SubAgentMiddleware(AgentMiddleware[Any, ContextT, ResponseT]):
                 raise ValueError(msg)
 
             # Resolve model if string
-            from deepagents._models import resolve_model  # noqa: PLC0415
+            from libs.deepagents.deepagents._models import resolve_model  # noqa: PLC0415
 
             model = resolve_model(spec["model"])
 
