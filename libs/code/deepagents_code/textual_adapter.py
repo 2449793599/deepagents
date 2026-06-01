@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from pydantic import TypeAdapter
     from rich.console import Console
 
-    from deepagents_code._ask_user_types import AskUserWidgetResult, Question
+    from libs.code.deepagents_code._ask_user_types import AskUserWidgetResult, Question
 
     # Type alias matching HITLResponse["decisions"] element type
     HITLDecision = ApproveDecision | EditDecision | RejectDecision
@@ -46,22 +46,22 @@ if TYPE_CHECKING:
         def __call__(self, *, approximate: bool = False) -> None: ...
 
 
-from deepagents_code._ask_user_types import AskUserRequest
-from deepagents_code._cli_context import CLIContext  # noqa: TC001
-from deepagents_code._session_stats import (
+from libs.code.deepagents_code._ask_user_types import AskUserRequest
+from libs.code.deepagents_code._cli_context import CLIContext  # noqa: TC001
+from libs.code.deepagents_code._session_stats import (
     ModelStats as ModelStats,
     SessionStats as SessionStats,
     SpinnerStatus as SpinnerStatus,
     format_token_count as format_token_count,
 )
-from deepagents_code.config import build_stream_config
-from deepagents_code.file_ops import FileOpTracker
-from deepagents_code.formatting import format_duration
-from deepagents_code.hooks import dispatch_hook
-from deepagents_code.input import MediaTracker, parse_file_mentions
-from deepagents_code.media_utils import create_multimodal_content
-from deepagents_code.tool_display import format_tool_message_content
-from deepagents_code.widgets.messages import (
+from libs.code.deepagents_code.config import build_stream_config
+from libs.code.deepagents_code.file_ops import FileOpTracker
+from libs.code.deepagents_code.formatting import format_duration
+from libs.code.deepagents_code.hooks import dispatch_hook
+from libs.code.deepagents_code.input import MediaTracker, parse_file_mentions
+from libs.code.deepagents_code.media_utils import create_multimodal_content
+from libs.code.deepagents_code.tool_display import format_tool_message_content
+from libs.code.deepagents_code.widgets.messages import (
     AppMessage,
     AssistantMessage,
     DiffMessage,
@@ -765,7 +765,7 @@ async def execute_task_textual(
                             input_toks = usage.get("input_tokens", 0)
                             output_toks = usage.get("output_tokens", 0)
                             total_toks = usage.get("total_tokens", 0)
-                            from deepagents_code.config import settings
+                            from libs.code.deepagents_code.config import settings
 
                             active_model = settings.model_name or ""
                             if input_toks or output_toks:

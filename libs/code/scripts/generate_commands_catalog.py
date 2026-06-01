@@ -17,7 +17,7 @@ _CODE_DIR = Path(__file__).resolve().parents[1]
 
 sys.path.insert(0, str(_CODE_DIR))
 
-from deepagents_code.command_registry import (  # noqa: E402
+from libs.code.deepagents_code.command_registry import (  # noqa: E402
     COMMANDS,
     HIDDEN_COMMANDS,
 )

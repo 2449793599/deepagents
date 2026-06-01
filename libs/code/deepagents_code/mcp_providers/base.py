@@ -18,8 +18,8 @@ from typing import TYPE_CHECKING
 from mcp.shared.auth import AnyUrl, OAuthClientMetadata
 
 if TYPE_CHECKING:
-    from deepagents_code.mcp_auth import FileTokenStorage
-    from deepagents_code.mcp_oauth_ui import OAuthInteraction
+    from libs.code.deepagents_code.mcp_auth import FileTokenStorage
+    from libs.code.deepagents_code.mcp_oauth_ui import OAuthInteraction
 
 
 @dataclass(frozen=True)

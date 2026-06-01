@@ -27,7 +27,7 @@ if TYPE_CHECKING:
     from langchain_mcp_adapters.client import Connection
     from mcp import ClientSession
 
-    from deepagents_code.project_utils import ProjectContext
+    from libs.code.deepagents_code.project_utils import ProjectContext
 
 logger = logging.getLogger(__name__)
 

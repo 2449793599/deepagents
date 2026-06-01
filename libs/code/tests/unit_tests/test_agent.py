@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from langchain.messages import ToolCall
     from langgraph.runtime import Runtime
 
-from deepagents_code.agent import (
+from libs.code.deepagents_code.agent import (
     DEFAULT_AGENT_NAME,
     _add_interrupt_on,
     _format_edit_file_description,
@@ -29,8 +29,8 @@ from deepagents_code.agent import (
     list_agents,
     load_async_subagents,
 )
-from deepagents_code.config import Settings, get_glyphs
-from deepagents_code.project_utils import ProjectContext
+from libs.code.deepagents_code.config import Settings, get_glyphs
+from libs.code.deepagents_code.project_utils import ProjectContext
 
 
 def _make_fake_chat_model() -> GenericFakeChatModel:
@@ -1037,7 +1037,7 @@ class TestResetAgentJson:
             patch("deepagents_code.agent.settings", mock_settings),
             patch("sys.stdout", buf),
         ):
-            from deepagents_code.agent import reset_agent
+            from libs.code.deepagents_code.agent import reset_agent
 
             reset_agent("coder", output_format="json")
 
@@ -1143,7 +1143,7 @@ class TestCreateCliAgentSkillsSources:
         # a regression that drops labels back to leaf-only derivation
         # (which would collapse user- vs project-scoped `.claude/skills`
         # and `.agents/skills` / `.deepagents/skills` directories).
-        from deepagents.middleware.skills import (
+        from libs.deepagents.deepagents.middleware.skills import (
             SkillsMiddleware as RealSkillsMiddleware,
         )
 
@@ -1785,7 +1785,7 @@ class TestEnableAskUser:
         return captured[0]
 
     def test_ask_user_included_when_enabled(self, tmp_path: Path) -> None:
-        from deepagents_code.ask_user import AskUserMiddleware
+        from libs.code.deepagents_code.ask_user import AskUserMiddleware
 
         middleware = self._capture_middleware(tmp_path, enable_ask_user=True)
         assert any(isinstance(mw, AskUserMiddleware) for mw in middleware)
@@ -1876,7 +1876,7 @@ class TestShellAllowListMiddleware:
 
     def test_allows_approved_shell_command_sync(self) -> None:
         """Approved shell commands pass through in synchronous contexts."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls"])
         request = Mock()
@@ -1893,7 +1893,7 @@ class TestShellAllowListMiddleware:
 
     def test_allows_non_shell_tools_sync(self) -> None:
         """Non-shell tools pass through unconditionally in synchronous contexts."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls"])
         request = Mock()
@@ -1908,7 +1908,7 @@ class TestShellAllowListMiddleware:
         """Non-shell tools pass through unconditionally."""
         from unittest.mock import AsyncMock
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls"])
         request = Mock()
@@ -1923,7 +1923,7 @@ class TestShellAllowListMiddleware:
         """Shell commands in the allow-list pass through to the handler."""
         from unittest.mock import AsyncMock
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls", "cat"])
         request = Mock()
@@ -1944,7 +1944,7 @@ class TestShellAllowListMiddleware:
 
         from langchain_core.messages import ToolMessage
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls", "cat"])
         request = Mock()
@@ -1967,7 +1967,7 @@ class TestShellAllowListMiddleware:
         """Disallowed shell commands are rejected in synchronous contexts."""
         from langchain_core.messages import ToolMessage
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls", "cat"])
         request = Mock()
@@ -1990,7 +1990,7 @@ class TestShellAllowListMiddleware:
 
         from langchain_core.messages import ToolMessage
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls"])
         request = Mock()
@@ -2008,7 +2008,7 @@ class TestShellAllowListMiddleware:
 
         from langchain_core.messages import ToolMessage
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls"])
         request = Mock()
@@ -2026,7 +2026,7 @@ class TestShellAllowListMiddleware:
 
         from langchain_core.messages import ToolMessage
 
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         middleware = ShellAllowListMiddleware(allow_list=["ls"])
         request = Mock()
@@ -2040,15 +2040,15 @@ class TestShellAllowListMiddleware:
 
     def test_rejects_empty_allow_list(self) -> None:
         """Constructor rejects empty allow-list."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         with pytest.raises(ValueError, match="must not be empty"):
             ShellAllowListMiddleware(allow_list=[])
 
     def test_rejects_shell_allow_all(self) -> None:
         """Constructor rejects SHELL_ALLOW_ALL sentinel."""
-        from deepagents_code.agent import ShellAllowListMiddleware
-        from deepagents_code.config import SHELL_ALLOW_ALL
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.config import SHELL_ALLOW_ALL
 
         with pytest.raises(TypeError, match="SHELL_ALLOW_ALL"):
             ShellAllowListMiddleware(allow_list=SHELL_ALLOW_ALL)
@@ -2088,7 +2088,7 @@ class TestCreateCliAgentShellMiddlewareWiring:
         self, tmp_path: Path
     ) -> None:
         """Middleware is added and `interrupt_on={}` with interrupt_shell_only."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         mock_settings = self._build_mock_settings(tmp_path)
 
@@ -2127,7 +2127,7 @@ class TestCreateCliAgentShellMiddlewareWiring:
         self, tmp_path: Path
     ) -> None:
         """When `auto_approve=True`, `interrupt_shell_only` has no effect."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         mock_settings = self._build_mock_settings(tmp_path)
 
@@ -2167,7 +2167,7 @@ class TestCreateCliAgentShellMiddlewareWiring:
         self, tmp_path: Path
     ) -> None:
         """Restrictive shell mode must cover delegated subagents too."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         mock_settings = self._build_mock_settings(tmp_path)
         mock_agent = Mock()
@@ -2225,7 +2225,7 @@ class TestCreateCliAgentShellMiddlewareWiring:
         self, tmp_path: Path
     ) -> None:
         """User-defined general-purpose subagent is not duplicated."""
-        from deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
 
         mock_settings = self._build_mock_settings(tmp_path)
         mock_agent = Mock()
@@ -2276,8 +2276,8 @@ class TestCreateCliAgentShellMiddlewareWiring:
 
     def test_shell_allow_all_skips_subagent_middleware(self, tmp_path: Path) -> None:
         """`SHELL_ALLOW_ALL` sentinel should not inject middleware on subagents."""
-        from deepagents_code.agent import ShellAllowListMiddleware
-        from deepagents_code.config import SHELL_ALLOW_ALL
+        from libs.code.deepagents_code.agent import ShellAllowListMiddleware
+        from libs.code.deepagents_code.config import SHELL_ALLOW_ALL
 
         mock_settings = self._build_mock_settings(tmp_path)
         mock_settings.shell_allow_list = SHELL_ALLOW_ALL
@@ -2678,7 +2678,7 @@ class TestResolvePtcOption:
         return [read_file, write_file, grep]
 
     def test_false_returns_none(self) -> None:
-        from deepagents_code.agent import _resolve_ptc_option
+        from libs.code.deepagents_code.agent import _resolve_ptc_option
 
         assert (
             _resolve_ptc_option(
@@ -2691,7 +2691,7 @@ class TestResolvePtcOption:
         )
 
     def test_empty_list_returns_none(self) -> None:
-        from deepagents_code.agent import _resolve_ptc_option
+        from libs.code.deepagents_code.agent import _resolve_ptc_option
 
         assert (
             _resolve_ptc_option(
@@ -2704,7 +2704,7 @@ class TestResolvePtcOption:
         )
 
     def test_safe_intersects_with_live_toolset(self) -> None:
-        from deepagents_code.agent import _resolve_ptc_option
+        from libs.code.deepagents_code.agent import _resolve_ptc_option
 
         result = _resolve_ptc_option(
             "safe",
@@ -2715,7 +2715,7 @@ class TestResolvePtcOption:
         assert result == ["grep", "read_file"]
 
     def test_all_with_auto_approve_skips_ack_check(self) -> None:
-        from deepagents_code.agent import _resolve_ptc_option
+        from libs.code.deepagents_code.agent import _resolve_ptc_option
 
         result = _resolve_ptc_option(
             "all",
@@ -2734,8 +2734,8 @@ class TestResolvePtcOption:
         of `INTERPRETER_PTC_SAFE_PRESET` against the live HITL map here is
         the forcing function for that invariant.
         """
-        from deepagents_code.agent import _add_interrupt_on
-        from deepagents_code.config import INTERPRETER_PTC_SAFE_PRESET
+        from libs.code.deepagents_code.agent import _add_interrupt_on
+        from libs.code.deepagents_code.config import INTERPRETER_PTC_SAFE_PRESET
 
         gated = set(_add_interrupt_on().keys())
         overlap = INTERPRETER_PTC_SAFE_PRESET & gated
@@ -2752,6 +2752,6 @@ class TestResolvePtcOption:
         restricted to non-gated, read-only file inspection; widening it
         without re-auditing the HITL surface should fail this test.
         """
-        from deepagents_code.config import INTERPRETER_PTC_SAFE_PRESET
+        from libs.code.deepagents_code.config import INTERPRETER_PTC_SAFE_PRESET
 
         assert frozenset({"read_file", "glob", "grep"}) == INTERPRETER_PTC_SAFE_PRESET

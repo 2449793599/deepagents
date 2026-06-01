@@ -20,7 +20,7 @@ import threading
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from deepagents_code._env_vars import NO_TERMINAL_ESCAPE, is_env_truthy
+from libs.code.deepagents_code._env_vars import NO_TERMINAL_ESCAPE, is_env_truthy
 
 if TYPE_CHECKING:
     from typing import TextIO

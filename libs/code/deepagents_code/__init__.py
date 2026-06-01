@@ -5,8 +5,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from deepagents_code._debug import configure_debug_logging
-from deepagents_code._version import __version__
+from libs.code.deepagents_code._debug import configure_debug_logging
+from libs.code.deepagents_code._version import __version__
 
 if TYPE_CHECKING:
     from collections.abc import Callable

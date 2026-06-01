@@ -16,7 +16,7 @@ import sys
 from functools import cache
 from typing import TYPE_CHECKING
 
-from deepagents_code._env_vars import KITTY_KEYBOARD
+from libs.code.deepagents_code._env_vars import KITTY_KEYBOARD
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

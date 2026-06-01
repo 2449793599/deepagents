@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from deepagents_code.mcp_auth import McpServerSpec
+    from libs.code.deepagents_code.mcp_auth import McpServerSpec
 
 
 class ConfigErrorKind(StrEnum):

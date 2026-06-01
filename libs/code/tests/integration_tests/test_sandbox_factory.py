@@ -18,10 +18,10 @@ from abc import ABC, abstractmethod
 from collections.abc import Iterator
 
 import pytest
-from deepagents.backends.protocol import SandboxBackendProtocol
-from deepagents.backends.sandbox import BaseSandbox
+from libs.deepagents.deepagents.backends.protocol import SandboxBackendProtocol
+from libs.deepagents.deepagents.backends.sandbox import BaseSandbox
 
-from deepagents_code.integrations.sandbox_factory import create_sandbox
+from libs.code.deepagents_code.integrations.sandbox_factory import create_sandbox
 
 
 class BaseSandboxIntegrationTest(ABC):

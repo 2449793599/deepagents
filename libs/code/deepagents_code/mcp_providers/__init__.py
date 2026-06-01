@@ -4,14 +4,14 @@
 predicate fires for `url`, with `GenericProvider` as the fallback.
 """
 
-from deepagents_code.mcp_providers._registry import resolve_provider
-from deepagents_code.mcp_providers.base import (
+from libs.code.deepagents_code.mcp_providers._registry import resolve_provider
+from libs.code.deepagents_code.mcp_providers.base import (
     GenericProvider,
     LoginResult,
     OAuthProvider,
 )
-from deepagents_code.mcp_providers.github import GitHubProvider
-from deepagents_code.mcp_providers.slack import SlackProvider
+from libs.code.deepagents_code.mcp_providers.github import GitHubProvider
+from libs.code.deepagents_code.mcp_providers.slack import SlackProvider
 
 __all__ = [
     "GenericProvider",

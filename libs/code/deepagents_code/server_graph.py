@@ -17,12 +17,12 @@ import logging
 import sys
 from typing import Any
 
-from deepagents_code._server_config import ServerConfig
-from deepagents_code._startup_error import (
+from libs.code.deepagents_code._server_config import ServerConfig
+from libs.code.deepagents_code._startup_error import (
     STARTUP_ERROR_MARKER as _STARTUP_ERROR_MARKER,
     emit_startup_failure,
 )
-from deepagents_code.project_utils import ProjectContext, get_server_project_context
+from libs.code.deepagents_code.project_utils import ProjectContext, get_server_project_context
 
 logger = logging.getLogger(__name__)
 

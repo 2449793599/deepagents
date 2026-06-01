@@ -8,9 +8,9 @@ import argparse
 
 from rich.markup import escape
 
-from deepagents_code import theme
-from deepagents_code._version import DOCS_URL, __version__
-from deepagents_code.config import (
+from libs.code.deepagents_code import theme
+from libs.code.deepagents_code._version import DOCS_URL, __version__
+from libs.code.deepagents_code.config import (
     _get_editable_install_path,
     _is_editable_install,
     console,

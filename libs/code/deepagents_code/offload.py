@@ -14,12 +14,12 @@ from typing import TYPE_CHECKING, Any, cast
 from langchain_core.messages import get_buffer_string
 from langchain_core.messages.utils import count_tokens_approximately
 
-from deepagents_code.config import create_model
-from deepagents_code.textual_adapter import format_token_count
+from libs.code.deepagents_code.config import create_model
+from libs.code.deepagents_code.textual_adapter import format_token_count
 
 if TYPE_CHECKING:
-    from deepagents.backends.protocol import BackendProtocol
-    from deepagents.middleware.summarization import (
+    from libs.deepagents.deepagents.backends.protocol import BackendProtocol
+    from libs.deepagents.deepagents.middleware.summarization import (
         SummarizationEvent,
         SummarizationMiddleware,
     )

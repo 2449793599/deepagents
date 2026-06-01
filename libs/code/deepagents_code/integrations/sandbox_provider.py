@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from deepagents.backends.protocol import SandboxBackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import SandboxBackendProtocol
 
 
 class SandboxError(Exception):

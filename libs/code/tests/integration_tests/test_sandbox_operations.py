@@ -20,9 +20,9 @@ pipeline — see release.yml.
 from collections.abc import Iterator
 
 import pytest
-from deepagents.backends.protocol import SandboxBackendProtocol
+from libs.deepagents.deepagents.backends.protocol import SandboxBackendProtocol
 
-from deepagents_code.integrations.sandbox_factory import create_sandbox
+from libs.code.deepagents_code.integrations.sandbox_factory import create_sandbox
 
 
 class TestSandboxOperations:

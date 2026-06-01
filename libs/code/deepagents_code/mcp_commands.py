@@ -9,14 +9,14 @@ if TYPE_CHECKING:
     import argparse
     from collections.abc import Callable
 
-    from deepagents_code.mcp_login_service import ConfigResolutionError
+    from libs.code.deepagents_code.mcp_login_service import ConfigResolutionError
 
 
 def _lazy_ui_help(fn_name: str) -> Callable[[], None]:
     """Return a callable that lazily imports and invokes a `ui` help function."""
 
     def _show() -> None:
-        from deepagents_code import ui
+        from libs.code.deepagents_code import ui
 
         getattr(ui, fn_name)()
 
@@ -101,8 +101,8 @@ async def run_mcp_login(*, server: str, config_path: str | None) -> int:
         Process exit code: 0 on success, 1 on config or login failure,
         2 if no config file could be found.
     """
-    from deepagents_code.mcp_auth import login
-    from deepagents_code.mcp_login_service import (
+    from libs.code.deepagents_code.mcp_auth import login
+    from libs.code.deepagents_code.mcp_login_service import (
         ConfigErrorKind,
         ConfigResolution,
         ConfigResolutionError,
@@ -110,7 +110,7 @@ async def run_mcp_login(*, server: str, config_path: str | None) -> int:
         resolve_mcp_config,
         select_server,
     )
-    from deepagents_code.mcp_oauth_ui import CliOAuthInteraction
+    from libs.code.deepagents_code.mcp_oauth_ui import CliOAuthInteraction
 
     resolution = resolve_mcp_config(config_path)
     if isinstance(resolution, ConfigResolutionError):
@@ -137,7 +137,7 @@ async def run_mcp_login(*, server: str, config_path: str | None) -> int:
     import httpx
     from pydantic import ValidationError
 
-    from deepagents_code.mcp_auth import format_login_failure
+    from libs.code.deepagents_code.mcp_auth import format_login_failure
 
     try:
         await login(
@@ -184,11 +184,11 @@ def run_mcp_config() -> int:
     """
     from pathlib import Path
 
-    from deepagents_code.mcp_tools import (
+    from libs.code.deepagents_code.mcp_tools import (
         _resolve_project_config_base,
         discover_mcp_configs,
     )
-    from deepagents_code.ui import console
+    from libs.code.deepagents_code.ui import console
 
     found = {str(p.resolve()) for p in discover_mcp_configs()}
     user_dir = Path.home() / ".deepagents"
@@ -238,7 +238,7 @@ def _print_resolution_error(error: ConfigResolutionError) -> None:
     Note: the untrusted-paths notice is also surfaced independently for
     successful resolutions in `run_mcp_login`.
     """
-    from deepagents_code.mcp_login_service import format_untrusted_project_notice
+    from libs.code.deepagents_code.mcp_login_service import format_untrusted_project_notice
 
     notice = format_untrusted_project_notice(error.untrusted_project_paths)
     if notice:

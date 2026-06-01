@@ -6,8 +6,8 @@ import json
 import logging
 from typing import TYPE_CHECKING
 
-from deepagents_code._env_vars import DEBUG_ONBOARDING, is_env_truthy
-from deepagents_code.model_config import DEFAULT_STATE_DIR
+from libs.code.deepagents_code._env_vars import DEBUG_ONBOARDING, is_env_truthy
+from libs.code.deepagents_code.model_config import DEFAULT_STATE_DIR
 
 if TYPE_CHECKING:
     from pathlib import Path

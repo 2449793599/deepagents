@@ -16,8 +16,8 @@ from typing import TYPE_CHECKING, Any
 
 from rich.markup import escape as escape_markup
 
-from deepagents_code.config import console, get_glyphs
-from deepagents_code.integrations.sandbox_provider import (
+from libs.code.deepagents_code.config import console, get_glyphs
+from libs.code.deepagents_code.integrations.sandbox_provider import (
     SandboxNotFoundError,
     SandboxProvider,
 )
@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from collections.abc import Generator
     from types import ModuleType
 
-    from deepagents.backends.protocol import SandboxBackendProtocol
+    from libs.deepagents.deepagents.backends.protocol import SandboxBackendProtocol
 
 
 def _run_sandbox_setup(backend: SandboxBackendProtocol, setup_script_path: str) -> None:
@@ -258,7 +258,7 @@ class _LangSmithProvider(SandboxProvider):
         """
         from langsmith.sandbox import SandboxClient
 
-        from deepagents_code.model_config import resolve_env_var
+        from libs.code.deepagents_code.model_config import resolve_env_var
 
         sandbox_key = resolve_env_var("LANGSMITH_SANDBOX_API_KEY")
         if sandbox_key:
@@ -310,9 +310,9 @@ class _LangSmithProvider(SandboxProvider):
             RuntimeError: If sandbox connection or startup fails.
             TypeError: If unsupported keyword arguments are provided.
         """
-        from deepagents.backends.langsmith import LangSmithSandbox
+        from libs.deepagents.deepagents.backends.langsmith import LangSmithSandbox
 
-        from deepagents_code.model_config import resolve_env_var
+        from libs.code.deepagents_code.model_config import resolve_env_var
 
         if kwargs:
             msg = f"Received unsupported arguments: {list(kwargs.keys())}"
@@ -441,7 +441,7 @@ class _DaytonaProvider(SandboxProvider):
             package="langchain-daytona",
         )
 
-        from deepagents_code.model_config import resolve_env_var
+        from libs.code.deepagents_code.model_config import resolve_env_var
 
         api_key = resolve_env_var("DAYTONA_API_KEY")
         if not api_key:
@@ -526,7 +526,7 @@ class _ModalProvider(SandboxProvider):
             package="langchain-modal",
         )
 
-        from deepagents_code.model_config import resolve_env_var
+        from libs.code.deepagents_code.model_config import resolve_env_var
 
         token_id = resolve_env_var("MODAL_TOKEN_ID")
         token_secret = resolve_env_var("MODAL_TOKEN_SECRET")
@@ -641,7 +641,7 @@ class _RunloopProvider(SandboxProvider):
             package="langchain-runloop",
         )
 
-        from deepagents_code.model_config import resolve_env_var
+        from libs.code.deepagents_code.model_config import resolve_env_var
 
         api_key = resolve_env_var("RUNLOOP_API_KEY")
         if not api_key:

@@ -37,21 +37,21 @@ from rich.spinner import Spinner as RichSpinner
 from rich.style import Style
 from rich.text import Text
 
-from deepagents_code._version import __version__
-from deepagents_code.agent import DEFAULT_AGENT_NAME
-from deepagents_code.config import (
+from libs.code.deepagents_code._version import __version__
+from libs.code.deepagents_code.agent import DEFAULT_AGENT_NAME
+from libs.code.deepagents_code.config import (
     SHELL_ALLOW_ALL,
     build_langsmith_thread_url,
     create_model,
     is_shell_command_allowed,
     settings,
 )
-from deepagents_code.file_ops import FileOpTracker
-from deepagents_code.hooks import dispatch_hook, dispatch_hook_fire_and_forget
-from deepagents_code.model_config import ModelConfigError
-from deepagents_code.sessions import generate_thread_id
-from deepagents_code.textual_adapter import SessionStats, print_usage_table
-from deepagents_code.unicode_security import (
+from libs.code.deepagents_code.file_ops import FileOpTracker
+from libs.code.deepagents_code.hooks import dispatch_hook, dispatch_hook_fire_and_forget
+from libs.code.deepagents_code.model_config import ModelConfigError
+from libs.code.deepagents_code.sessions import generate_thread_id
+from libs.code.deepagents_code.textual_adapter import SessionStats, print_usage_table
+from libs.code.deepagents_code.unicode_security import (
     check_url_safety,
     detect_dangerous_unicode,
     format_warning_detail,
@@ -1012,11 +1012,11 @@ async def run_non_interactive(
 
     message_kwargs: dict[str, Any] | None = None
     if initial_skill and initial_skill.strip():
-        from deepagents_code.skills.invocation import (
+        from libs.code.deepagents_code.skills.invocation import (
             build_skill_invocation_envelope,
             discover_skills_and_roots,
         )
-        from deepagents_code.skills.load import load_skill_content
+        from libs.code.deepagents_code.skills.load import load_skill_content
 
         normalized_skill = initial_skill.strip().lower()
         try:
@@ -1101,7 +1101,7 @@ async def run_non_interactive(
     result.apply_to_settings()
     thread_id = generate_thread_id()
 
-    from deepagents_code.config import build_stream_config
+    from libs.code.deepagents_code.config import build_stream_config
 
     config: RunnableConfig = build_stream_config(
         thread_id, assistant_id, sandbox_type=sandbox_type
@@ -1116,13 +1116,13 @@ async def run_non_interactive(
 
     import asyncio
 
-    from deepagents_code.server_manager import server_session
+    from libs.code.deepagents_code.server_manager import server_session
 
     # Launch MCP preload concurrently with server startup
     mcp_task: asyncio.Task[Any] | None = None
     if not no_mcp and not quiet:
         try:
-            from deepagents_code.main import _preload_session_mcp_server_info
+            from libs.code.deepagents_code.main import _preload_session_mcp_server_info
 
             mcp_task = asyncio.create_task(
                 _preload_session_mcp_server_info(

@@ -28,8 +28,8 @@ from typing import TYPE_CHECKING, Any, Literal, TextIO
 
 from packaging.version import InvalidVersion, Version
 
-from deepagents_code._version import PYPI_URL, SDK_PYPI_URL, USER_AGENT, __version__
-from deepagents_code.model_config import DEFAULT_CONFIG_PATH, DEFAULT_STATE_DIR
+from libs.code.deepagents_code._version import PYPI_URL, SDK_PYPI_URL, USER_AGENT, __version__
+from libs.code.deepagents_code.model_config import DEFAULT_CONFIG_PATH, DEFAULT_STATE_DIR
 
 if TYPE_CHECKING:
     from pathlib import Path

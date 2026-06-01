@@ -27,13 +27,13 @@ from typing import TYPE_CHECKING, Any
 if TYPE_CHECKING:
     from collections.abc import AsyncIterator
 
-    from deepagents_code.mcp_tools import MCPSessionManager
-    from deepagents_code.remote_client import RemoteAgent
-    from deepagents_code.server import ServerProcess
+    from libs.code.deepagents_code.mcp_tools import MCPSessionManager
+    from libs.code.deepagents_code.remote_client import RemoteAgent
+    from libs.code.deepagents_code.server import ServerProcess
 
-from deepagents_code._env_vars import SERVER_ENV_PREFIX
-from deepagents_code._server_config import ServerConfig
-from deepagents_code.project_utils import ProjectContext
+from libs.code.deepagents_code._env_vars import SERVER_ENV_PREFIX
+from libs.code.deepagents_code._server_config import ServerConfig
+from libs.code.deepagents_code.project_utils import ProjectContext
 
 logger = logging.getLogger(__name__)
 _DISTRIBUTION_NAME = "deepagents-code"

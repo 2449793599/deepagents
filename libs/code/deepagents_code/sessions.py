@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
     from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 
-    from deepagents_code.output import OutputFormat
+    from libs.code.deepagents_code.output import OutputFormat
 
 logger = logging.getLogger(__name__)
 

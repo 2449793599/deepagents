@@ -23,7 +23,7 @@ from urllib.parse import urlparse
 
 import tomli_w
 
-from deepagents_code import _env_vars, auth_store
+from libs.code.deepagents_code import _env_vars, auth_store
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

@@ -13,12 +13,12 @@ from urllib.parse import urlparse
 
 from mcp.shared.auth import AnyUrl, OAuthClientInformationFull
 
-from deepagents_code.mcp_auth import _run_device_flow
-from deepagents_code.mcp_providers.base import LoginResult, OAuthProvider
+from libs.code.deepagents_code.mcp_auth import _run_device_flow
+from libs.code.deepagents_code.mcp_providers.base import LoginResult, OAuthProvider
 
 if TYPE_CHECKING:
-    from deepagents_code.mcp_auth import FileTokenStorage
-    from deepagents_code.mcp_oauth_ui import OAuthInteraction
+    from libs.code.deepagents_code.mcp_auth import FileTokenStorage
+    from libs.code.deepagents_code.mcp_oauth_ui import OAuthInteraction
 
 
 _GITHUB_MCP_CLIENT_ID = "Iv23libxz8qOApH0WQL3"

@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from deepagents_code._env_vars import SERVER_ENV_PREFIX
-from deepagents_code._git import find_git_root
+from libs.code.deepagents_code._env_vars import SERVER_ENV_PREFIX
+from libs.code.deepagents_code._git import find_git_root
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

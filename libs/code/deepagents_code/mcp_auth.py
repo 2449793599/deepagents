@@ -37,7 +37,7 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from deepagents_code.mcp_oauth_ui import OAuthInteraction
+    from libs.code.deepagents_code.mcp_oauth_ui import OAuthInteraction
 
 
 class _DeviceCodeResponse(BaseModel):

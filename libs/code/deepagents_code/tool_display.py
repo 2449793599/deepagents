@@ -12,8 +12,8 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Any
 
-from deepagents_code.config import MAX_ARG_LENGTH, get_glyphs
-from deepagents_code.unicode_security import strip_dangerous_unicode
+from libs.code.deepagents_code.config import MAX_ARG_LENGTH, get_glyphs
+from libs.code.deepagents_code.unicode_security import strip_dangerous_unicode
 
 _HIDDEN_CHAR_MARKER = " [hidden chars removed]"
 """Marker appended to display values that had dangerous Unicode stripped, so

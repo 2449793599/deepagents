@@ -7,9 +7,9 @@ spec-compliant servers always resolve to a usable policy.
 
 from __future__ import annotations
 
-from deepagents_code.mcp_providers.base import GenericProvider, OAuthProvider
-from deepagents_code.mcp_providers.github import GitHubProvider
-from deepagents_code.mcp_providers.slack import SlackProvider
+from libs.code.deepagents_code.mcp_providers.base import GenericProvider, OAuthProvider
+from libs.code.deepagents_code.mcp_providers.github import GitHubProvider
+from libs.code.deepagents_code.mcp_providers.slack import SlackProvider
 
 _REGISTRY: tuple[OAuthProvider, ...] = (
     SlackProvider(),

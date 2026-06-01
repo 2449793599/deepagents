@@ -203,7 +203,7 @@ def _get_tavily_client() -> TavilyClient | None:
     if _tavily_client is not _UNSET:
         return _tavily_client  # type: ignore[return-value]  # narrowed by sentinel check
 
-    from deepagents_code.config import settings
+    from libs.code.deepagents_code.config import settings
 
     if settings.has_tavily:
         from tavily import TavilyClient as _TavilyClient

@@ -16,8 +16,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from deepagents_code.model_config import DEFAULT_CONFIG_DIR, DEFAULT_STATE_DIR
-from deepagents_code.onboarding import ONBOARDING_MARKER_FILENAME
+from libs.code.deepagents_code.model_config import DEFAULT_CONFIG_DIR, DEFAULT_STATE_DIR
+from libs.code.deepagents_code.onboarding import ONBOARDING_MARKER_FILENAME
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

@@ -11,10 +11,10 @@ import tomllib
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, cast
 
-from deepagents import create_deep_agent
-from deepagents.backends import CompositeBackend, LocalShellBackend
-from deepagents.backends.filesystem import FilesystemBackend
-from deepagents.middleware import MemoryMiddleware, SkillsMiddleware
+from libs.deepagents.deepagents import create_deep_agent
+from libs.deepagents.deepagents.backends import CompositeBackend, LocalShellBackend
+from libs.deepagents.deepagents.backends.filesystem import FilesystemBackend
+from libs.deepagents.deepagents.middleware import MemoryMiddleware, SkillsMiddleware
 
 # Backwards-compat flag: SDKs before 0.5.4 accept only `list[str]` for
 # `SkillsMiddleware.sources`; newer SDKs expose the `SkillSource` alias
@@ -31,9 +31,9 @@ else:
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable, Sequence
 
-    from deepagents.backends.sandbox import SandboxBackendProtocol
-    from deepagents.middleware.async_subagents import AsyncSubAgent
-    from deepagents.middleware.subagents import CompiledSubAgent, SubAgent
+    from libs.deepagents.deepagents.backends.sandbox import SandboxBackendProtocol
+    from libs.deepagents.deepagents.middleware.async_subagents import AsyncSubAgent
+    from libs.deepagents.deepagents.middleware.subagents import CompiledSubAgent, SubAgent
     from langchain.agents.middleware import InterruptOnConfig
     from langchain.agents.middleware.types import AgentState
     from langchain.messages import ToolCall
@@ -46,14 +46,14 @@ if TYPE_CHECKING:
     from langgraph.runtime import Runtime
     from langgraph.types import Command
 
-    from deepagents_code.mcp_tools import MCPServerInfo
-    from deepagents_code.output import OutputFormat
+    from libs.code.deepagents_code.mcp_tools import MCPServerInfo
+    from libs.code.deepagents_code.output import OutputFormat
 
 from langchain.agents.middleware.types import AgentMiddleware
 
-from deepagents_code import theme
-from deepagents_code._constants import DEFAULT_AGENT_NAME
-from deepagents_code.config import (
+from libs.code.deepagents_code import theme
+from libs.code.deepagents_code._constants import DEFAULT_AGENT_NAME
+from libs.code.deepagents_code.config import (
     _ShellAllowAll,
     config,
     console,
@@ -61,16 +61,16 @@ from deepagents_code.config import (
     get_glyphs,
     settings,
 )
-from deepagents_code.configurable_model import ConfigurableModelMiddleware
-from deepagents_code.integrations.sandbox_factory import get_default_working_dir
-from deepagents_code.local_context import (
+from libs.code.deepagents_code.configurable_model import ConfigurableModelMiddleware
+from libs.code.deepagents_code.integrations.sandbox_factory import get_default_working_dir
+from libs.code.deepagents_code.local_context import (
     LocalContextMiddleware,
     _AsyncExecutableBackend,
     _ExecutableBackend,
 )
-from deepagents_code.project_utils import ProjectContext, get_server_project_context
-from deepagents_code.subagents import list_subagents
-from deepagents_code.unicode_security import (
+from libs.code.deepagents_code.project_utils import ProjectContext, get_server_project_context
+from libs.code.deepagents_code.subagents import list_subagents
+from libs.code.deepagents_code.unicode_security import (
     check_url_safety,
     detect_dangerous_unicode,
     format_warning_detail,
@@ -109,7 +109,7 @@ class ShellAllowListMiddleware(AgentMiddleware):
             ValueError: If `allow_list` is empty.
             TypeError: If `allow_list` is the `SHELL_ALLOW_ALL` sentinel.
         """
-        from deepagents_code.config import SHELL_ALLOW_ALL
+        from libs.code.deepagents_code.config import SHELL_ALLOW_ALL
 
         super().__init__()
         if not allow_list:
@@ -135,7 +135,7 @@ class ShellAllowListMiddleware(AgentMiddleware):
         """
         from langchain_core.messages import ToolMessage as LCToolMessage
 
-        from deepagents_code.config import is_shell_command_allowed
+        from libs.code.deepagents_code.config import is_shell_command_allowed
 
         if request.tool_call["name"] != "execute":
             return None
@@ -262,7 +262,7 @@ def _resolve_ptc_option(
     if isinstance(ptc, str):
         normalized = ptc.strip().lower()
         if normalized == "safe":
-            from deepagents_code.config import INTERPRETER_PTC_SAFE_PRESET
+            from libs.code.deepagents_code.config import INTERPRETER_PTC_SAFE_PRESET
 
             selected = sorted(INTERPRETER_PTC_SAFE_PRESET & live_set)
             dropped = sorted(INTERPRETER_PTC_SAFE_PRESET - live_set)
@@ -447,7 +447,7 @@ def list_agents(*, output_format: OutputFormat = "text") -> None:
 
     if not names:
         if output_format == "json":
-            from deepagents_code.output import write_json
+            from libs.code.deepagents_code.output import write_json
 
             write_json("list", [])
             return
@@ -460,7 +460,7 @@ def list_agents(*, output_format: OutputFormat = "text") -> None:
         return
 
     if output_format == "json":
-        from deepagents_code.output import write_json
+        from libs.code.deepagents_code.output import write_json
 
         agents = []
         for name in names:
@@ -547,7 +547,7 @@ def reset_agent(
 
     if dry_run:
         if output_format == "json":
-            from deepagents_code.output import write_json
+            from libs.code.deepagents_code.output import write_json
 
             write_json(
                 "reset",
@@ -576,7 +576,7 @@ def reset_agent(
     agent_md.write_text(source_content)
 
     if output_format == "json":
-        from deepagents_code.output import write_json
+        from libs.code.deepagents_code.output import write_json
 
         write_json(
             "reset",
@@ -1247,13 +1247,13 @@ def create_cli_agent(
     # and writes them from `after_model` (token count from the latest
     # `AIMessage.usage_metadata`, model spec from `context["effective_model"]`).
     # The CLI reads them back from `state_values` on thread resume.
-    from deepagents_code.resume_state import ResumeStateMiddleware
+    from libs.code.deepagents_code.resume_state import ResumeStateMiddleware
 
     agent_middleware.append(ResumeStateMiddleware())
 
     # Add ask_user middleware (must be early so its tool is available)
     if enable_ask_user:
-        from deepagents_code.ask_user import AskUserMiddleware
+        from libs.code.deepagents_code.ask_user import AskUserMiddleware
 
         agent_middleware.append(AskUserMiddleware())
 
@@ -1437,7 +1437,7 @@ def create_cli_agent(
             routes={},
         )
 
-    from deepagents.middleware.summarization import create_summarization_tool_middleware
+    from libs.deepagents.deepagents.middleware.summarization import create_summarization_tool_middleware
 
     agent_middleware.append(
         create_summarization_tool_middleware(model, composite_backend)
