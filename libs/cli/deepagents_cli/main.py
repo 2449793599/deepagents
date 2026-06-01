@@ -14,7 +14,7 @@ import os
 import sys
 from typing import TYPE_CHECKING, Any
 
-from deepagents_cli._version import __version__
+from libs.cli.deepagents_cli._version import __version__
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Sequence

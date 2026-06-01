@@ -20,12 +20,12 @@ from langchain_core.messages import AIMessage
 from langchain_core.tools import BaseTool, tool
 from pytest_benchmark.fixture import BenchmarkFixture
 
-from deepagents.graph import create_deep_agent
-from deepagents.middleware.filesystem import FilesystemMiddleware
-from tests.unit_tests.chat_model import GenericFakeChatModel
+from libs.deepagents.deepagents.graph import create_deep_agent
+from libs.deepagents.deepagents.middleware.filesystem import FilesystemMiddleware
+from libs.deepagents.tests.unit_tests.chat_model import GenericFakeChatModel
 
 if TYPE_CHECKING:
-    from deepagents.middleware.subagents import SubAgent
+    from libs.deepagents.deepagents.middleware.subagents import SubAgent
 
 # ---------------------------------------------------------------------------
 # Helpers

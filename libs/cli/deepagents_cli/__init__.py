@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from deepagents_cli._version import __version__
+from libs.cli.deepagents_cli._version import __version__
 
 if TYPE_CHECKING:
     from collections.abc import Callable
